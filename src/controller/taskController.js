@@ -1,7 +1,5 @@
 const taskModel= require('../model/taskModel')
 
-
-
 const createTask= async function(req,res){
 try{
     let data=req.body
@@ -39,8 +37,15 @@ try{
 
 const getTask=async function (req,res){
 try{
-    let allTask= await taskModel.find()
-    return res.status(200).send({status:true,message:"Task List", task:allTask})
+    let taskList=req.query
+    let {status}=taskList
+    if(status){
+        let allTask= await taskModel.find({status})
+        return res.status(200).send({status:true,message:"Task List", task:allTask})
+    }else{
+        let allTask= await taskModel.find()
+        return res.status(200).send({status:true,message:"Task List", task:allTask})
+    }
 }catch(error){
     return res.status(500).send({status:false,message:error.meggage})
 }
