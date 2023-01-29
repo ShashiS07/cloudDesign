@@ -11,7 +11,7 @@ try{
     if(!status) return res.status(400).send({status:false,messgae:"Please give status of work"})
 
     let taskCreate= await taskModel.create(data)
-    return res.status(201).send({status:true,meggage:"task Created", data:taskCreate})
+    return res.status(201).send({status:true,message:"task Created", data:taskCreate})
 }catch(error){
     return res.status(500).send({status:false,message:error.message})
 }

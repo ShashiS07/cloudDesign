@@ -2,6 +2,7 @@ const express=require('express')
 const route=require('./route/route')
 const mongoose= require('mongoose')
 const app= express()
+const cors= require('cors')
 
 
 mongoose.set('strictQuery', true);
@@ -11,7 +12,7 @@ mongoose.connect("mongodb+srv://Shashi_Shekhar_Singh:Shashi0708@myproject.mb3u3z
 {useNewUrlParser:true})
 .then(()=>console.log("MongoDb is connected"))
 .catch(err=>console.log(err))
-
+app.use(cors())
 app.use('/',route)
 
 app.listen(process.env.PORT || 4000,function(){
