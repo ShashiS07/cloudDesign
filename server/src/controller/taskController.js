@@ -41,10 +41,10 @@ try{
     let {status}=taskList
     if(status){
         let allTask= await taskModel.find({status})
-        return res.status(200).send({status:true,message:"Task List", task:allTask})
+        return res.status(200).send({status:true,message:"Task List", data:allTask})
     }else{
         let allTask= await taskModel.find()
-        return res.status(200).send({status:true,message:"Task List", task:allTask})
+        return res.status(200).send({status:true,message:"Task List", data:allTask})
     }
 }catch(error){
     return res.status(500).send({status:false,message:error.meggage})

@@ -10,7 +10,7 @@ const DoTask = () => {
 
     useEffect(() => {
         axios.get("http://localhost:4000/gettask").then((res) => {
-           setTask(res.data)
+           setTask(res.data.data)
         }).catch((err) => {
            alert(err.response.data.message + " Error")
         })
@@ -25,6 +25,7 @@ const DoTask = () => {
             }).catch((err) => {
                 alert(err.message)
             })
+        
     }
     return (
         <div className="todo">
@@ -41,11 +42,10 @@ const DoTask = () => {
                 <option value="In-Progress">In-Progress</option>
                 <option value="Completed">Completed</option>
             </select>
-            <input className='btn' type="submit" />
+            <button>Add Task</button>
         </form>
         <div className="list">
-
-            <Item text="Hello"/>
+            {task.map((ele)=> <Item key={ele._id} text={ele.title} />)}
         </div>
         </div>
     )
