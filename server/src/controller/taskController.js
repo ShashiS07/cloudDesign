@@ -51,6 +51,18 @@ try{
 }
 }
 
+// ==================================delete task=============================================
+const deleteTask= async function(req,res){
+    try{
+        let taskId=req.params.taskId
+        let deleteTask=await taskModel.deleteOne({taskId})
+        return res.status(200).send({status:true,message:"deleted Successfully"})
+    
+    }catch(error){
+        return res.status(500).send({status:false,messgae:error.message})
+    }
+    }
+
 // ============================================================================================
 
-module.exports={createTask,editTask,getTask}
+module.exports={createTask,editTask,getTask,deleteTask}
